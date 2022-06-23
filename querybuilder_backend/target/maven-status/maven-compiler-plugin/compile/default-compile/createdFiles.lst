@@ -1,0 +1,4 @@
+com/example/querybuilder_backend/util/SqlUtil.class
+com/example/querybuilder_backend/controller/QueryController.class
+com/example/querybuilder_backend/pojo/Query.class
+com/example/querybuilder_backend/QuerybuilderBackendApplication.class

@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+query-builder:
+  mapping:
+    '[all]': 'and'
+    '[any]': 'or'
+    '[equals]': '='
+    '[does not equal]': '!='
+    '[is empty]': 'is null'
+    '[is not empty]': 'is not null'
+
