@@ -9,4 +9,6 @@ query-builder:
     '[does not equal]': '!='
     '[is empty]': 'is null'
     '[is not empty]': 'is not null'
+    '[contains]': 'exists'
+    '[does not contain]': 'not exists'
 
