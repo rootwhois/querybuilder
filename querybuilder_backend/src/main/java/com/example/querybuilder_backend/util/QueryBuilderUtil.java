@@ -16,7 +16,7 @@ public class QueryBuilderUtil {
     private QueryBuilderProperties queryBuilderProperties;
 
     public String getSql(Query query) {
-        return getSql(query, "") + ";";
+        return "select * from test where " + getSql(query, "") + ";";
     }
 
     public String getSql(Query query, String sql) {

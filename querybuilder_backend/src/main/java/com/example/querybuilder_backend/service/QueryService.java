@@ -12,8 +12,7 @@ public class QueryService {
     private QueryBuilderUtil queryBuilderUtil;
 
     public String getSql(QueryRoot root) {
-        String str = "select * from test where";
-        return str + queryBuilderUtil.getSql(root.getQuery());
+        return queryBuilderUtil.getSql(root.getQuery());
     }
 
 }

@@ -1,8 +1,21 @@
 <template>
   <div class="home">
     <vue-query-builder :rules="rules" v-model="query"></vue-query-builder>
-    <button @click="getQuery">获取Query</button>
-    <button @click="getSql(query)">获取SQL</button>
+    <br>
+    <el-button type="primary" @click="getQuery">获取Query</el-button>
+    <el-button type="primary" @click="getSql(query)">获取SQL</el-button>
+
+    <el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  :before-close="handleClose">
+  <span>{{data}}</span>
+  <span slot="footer" class="dialog-footer">
+    <!-- <el-button @click="dialogVisible = false">取 消</el-button> -->
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
   </div>
 </template>
 
@@ -14,6 +27,8 @@ export default {
   components: { VueQueryBuilder },
   data() {
     return {
+      data: "",
+      dialogVisible: false,
       rules: [
         {
           type: "text",
@@ -60,8 +75,16 @@ export default {
     };
   },
   methods: {
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then(_ => {
+          done();
+        })
+        .catch(_ => {});
+    },
     getQuery() {
-      console.log(this.query);
+      this.data = this.query;
+      this.dialogVisible = true;
     },
     queryToSql(query) {
       var sql = [];
@@ -85,15 +108,15 @@ export default {
       return sql.join(" ");
     },
     getSql(query) {
-      this.$axios.post("/api/query/getSql", {
-        query: query
-      }).then(response => {
-       let sql = response.data;
-       console.log(sql);
-       alert(sql);
-      }
-      );
-    }
+      this.$axios
+        .post("/api/query/getSql", {
+          query: query,
+        })
+        .then((response) => {
+          this.data = response.data;
+          this.dialogVisible = true;
+        });
+    },
   },
 };
 </script>
