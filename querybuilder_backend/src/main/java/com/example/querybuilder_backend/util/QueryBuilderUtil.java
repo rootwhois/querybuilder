@@ -25,13 +25,12 @@ public class QueryBuilderUtil {
             if (child.getType().equals("query-builder-rule")) {
                 Query childQuery = child.getQuery();
                 list.add(childQuery.getRule());
-                list.add(queryBuilderProperties.getMapping().getOrDefault(childQuery.getOperator(), "="));
+                list.add(queryBuilderProperties.getMapping().getOrDefault(childQuery.getOperator(), ""));
 
                 if (StrUtil.isNotEmpty(childQuery.getValue())) {
                     String field = "'";
 
                     if (childQuery.getOperator().equals("ends with")) {
-                        field += "%";
                     }
                     field += childQuery.getValue();
                     if (childQuery.getOperator().equals("begins with")) {
