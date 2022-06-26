@@ -31,9 +31,12 @@ public class QueryBuilderUtil {
                     String field = "'";
 
                     if (childQuery.getOperator().equals("ends with")) {
+                        list.add("like");
+                        field += "%";
                     }
                     field += childQuery.getValue();
                     if (childQuery.getOperator().equals("begins with")) {
+                        list.add("like");
                         field += "%";
                     }
                     field += "'";
